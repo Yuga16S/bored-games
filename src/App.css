@@ -1,0 +1,153 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.61);
+  color: rgb(255, 255, 255);
+}
+
+h1 {
+  text-align: center;
+  color:rgb(255, 255, 255);
+}
+
+.canvas {
+  position: relative;
+  background-color: darkorange;
+  border: 2px solid black;
+}
+
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(8, 109, 104);
+  transform: translate(-50%, -50%);
+}
+
+.player-inputs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.player-inputs div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input {
+  padding: 5px;
+  width: 100px;
+  color: black;
+  background-color: whitesmoke;
+}
+
+label {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #11a7a7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top:10px;
+  width: 100px;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  align-content: center;
+}
+
+button:disabled {
+  background-color: #CCC;
+  cursor: not-allowed;
+}
+
+.current-turn {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.reset-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: hsl(198, 100%, 33%); /* Green background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+}
+
+.reset-button:hover {
+  background-color: hsl(198, 100%, 23%); /* Darker green on hover */
+}
+
+.game-over-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 150%;
+}
+
+.game-over {
+  text-align: center;
+  border: #5468ff 8px;
+  border-style: dotted;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: Arial;
+  width: 200px;
+  height: 30px;
+
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.score-board {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 92%;
+    padding: 0 20px;
+    border: blue;
+    border-style: dashed;
+}
+
+
