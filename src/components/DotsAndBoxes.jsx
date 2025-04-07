@@ -6,6 +6,7 @@ import gameOverSoundAsset from '../sounds/Game_over_win.wav';
 import clickSoundAsset from '../sounds/click.wav';
 import drawSoundAsset from '../sounds/draw.wav';
 import GameOver from './GameOver.jsx';
+import Header from './Header.jsx';
 
 const gameOverSound = new Audio(gameOverSoundAsset);
 gameOverSound.volume = 0.2;
@@ -79,20 +80,23 @@ function DotsAndBoxes() {
     };
 
     return ( 
-    <div>
-        <h1>Dots and boxes</h1>
+        <div className="game-container">
+        <Header />    
+        <h1 style={{ marginBottom: "50px", paddingTop: "0", paddingBottom: "50px" }}>Dots and boxes</h1>
         {gameState === GameState.NOT_STARTED ? (
+            <>
             <div className="player-inputs">
-            <div>
-                <label>Player 1: </label>
-                <input type="text" value={player1} onChange={(e) => {handlePlayer1Change(e)} } placeholder="Enter initials" maxLength={2} />
+                <div>
+                    <label>Player 1: </label>
+                    <input type="text" value={player1} onChange={(e) => {handlePlayer1Change(e)} } placeholder="Enter initials" maxLength={2} />
+                </div>
+                <div>
+                    <label>Player 2: </label>
+                    <input type="text" value={player2} onChange={(e) => {handlePlayer2Change(e)} } placeholder="Enter initials" maxLength={2} />
+                </div>
+                <button disabled={!isStartEnabled} onClick={handleStartGame}>START</button>
             </div>
-            <div>
-                <label>Player 2: </label>
-                <input type="text" value={player2} onChange={(e) => {handlePlayer2Change(e)} } placeholder="Enter initials" maxLength={2} />
-            </div>
-            <button disabled={!isStartEnabled} onClick={handleStartGame}>START</button>
-        </div>
+            </>
         ) : ( 
         <>
         <Canvas player1={player1}

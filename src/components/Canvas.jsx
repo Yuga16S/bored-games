@@ -26,8 +26,8 @@ function Canvas({player1,
     const rows = 5;
     const cols = 5;
 
-    const spacingX = canvasSize / (cols - 1);
-    const spacingY = canvasSize / (rows - 1);
+    const spacingX = canvasSize / (cols - 1) - 1;
+    const spacingY = canvasSize / (rows - 1) - 1;
 
     
     const createDots = () => {
