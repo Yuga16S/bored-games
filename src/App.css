@@ -330,7 +330,7 @@ button:disabled {
 }
 
 .tile {
-  color: currentColor;
+  color: white;
   font-size: 3.5em;
   display: flex;
   justify-content: center;
@@ -647,4 +647,48 @@ section > div {
   0% { opacity: 0; transform: translateY(10px); }
   50%  { opacity: 0.3; transform: translateY(5px);}
   100% { opacity: 1; transform: translateY(0); }
+}
+
+.s-alert-box {
+  min-width: 250px;
+}
+
+.s-alert-close::before, .s-alert-close::after {
+  width: 2px;
+}
+
+
+.welcomePage {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(to right, #6a07c0, #ff6ec4);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcomePage p {
+  font-size: 4rem;
+  color: rgb(0, 0, 0);
+  animation: pulse 2s infinite;
+  margin: 0;
+}
+
+.welcomePage a {
+  color: rgb(1, 42, 70);
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.welcomePage a:hover {
+  color: #ffd6f6;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
 }

@@ -4,7 +4,7 @@ import dotsAndBoxesImage from '../assets/dnb3.png';
 import ticTacToeImage from '../assets/ttt2.png';
 import Header from './Header.jsx';
 
-const HomePage = () => {
+const HomePage = ({ authenticated , onLogout}) => {
     const navigate = useNavigate();
     const reviewRef = useRef([]);
     const [currentReview, setCurrentreview] = useState("");
@@ -12,7 +12,7 @@ const HomePage = () => {
     const goToTicTacToe = () => navigate('/tictactoe');
 
     const fetchReviews = async () => {
-        const response = await fetch('/api/reviews'); //db
+        const response = await fetch('/api/reviews'); // need to fix this, add an api to backend
         const data = await response.json();
         reviewRef.current = data;
     };
@@ -24,15 +24,14 @@ const HomePage = () => {
                 const randomIndex = Math.floor(Math.random() * reviewRef.current.length);
                 setCurrentreview(reviewRef.current[randomIndex].review);
             }
-        }, 1000); // changes every 10 seconds
-        return () => clearInterval(interval); //cleanup Code
+        }, 1000);
+        return () => clearInterval(interval); 
     }, []);
 
     return (
         <div className="homepage-container">
-            {/* Section 1 - Header and Game Intro */}
             <section className="homepage-section section-1">
-                <Header />
+                <Header authenticated={authenticated} onLogout={onLogout} />
                 <div className="game-intro">
                     <h1>Game on!</h1>
                     <p>
@@ -54,7 +53,6 @@ const HomePage = () => {
                 </div>
             </section>
             <hr style={{ borderTop: '2px solid #0d001f', borderBottom: '2px solid #0d001f' }} ></hr>
-            {/* Section 2 - Upcoming Features */}
             <section id="news-section" className="homepage-section section-2">
                 <div className="scrolling-text">
                     <p>New updates coming soon! Stay tuned for the latest releases. Below are the upcoming games and features. Release dates will be shared soon!</p>

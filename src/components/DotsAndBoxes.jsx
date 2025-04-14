@@ -87,11 +87,11 @@ function DotsAndBoxes() {
             <>
             <div className="player-inputs">
                 <div>
-                    <label>Player 1: </label>
+                    <label style={{ color: '#05aeb4' }}>Player 1: </label>
                     <input type="text" value={player1} onChange={(e) => {handlePlayer1Change(e)} } placeholder="Enter initials" maxLength={2} />
                 </div>
                 <div>
-                    <label>Player 2: </label>
+                    <label style={{ color: '#05aeb4' }}>Player 2: </label>
                     <input type="text" value={player2} onChange={(e) => {handlePlayer2Change(e)} } placeholder="Enter initials" maxLength={2} />
                 </div>
                 <button disabled={!isStartEnabled} onClick={handleStartGame}>START</button>
