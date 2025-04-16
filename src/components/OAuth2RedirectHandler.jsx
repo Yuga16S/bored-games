@@ -1,12 +1,14 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom'; 
+import { Navigate, useLocation } from 'react-router-dom'; 
 import { ACCESS_TOKEN } from '../constants/index.js';
 
-const OAuth2RedirectHandler = (props) => {
+const OAuth2RedirectHandler = ({  setAuthenticated  }) => {
+    const location = useLocation();
+
     const getUrlParameter = (name) => {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        const results = regex.exec(props.location.search);
+        const results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
@@ -15,9 +17,10 @@ const OAuth2RedirectHandler = (props) => {
 
     if (token) {
         localStorage.setItem(ACCESS_TOKEN, token);
-        return <Navigate to="/profile" state={{ from: props.location }} />;
+        setAuthenticated(true);
+        return <Navigate to="/homePage"  />;
     } else {
-        return <Navigate to="/login" state={{ from: props.location, error }} />;
+        return <Navigate to="/login" state={{ from: location, error }} />;
     }
 };
 

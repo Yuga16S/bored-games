@@ -84,7 +84,7 @@ function App() {
             <Route path="/profile" element={<PrivateRoute authenticated={authenticated} element={<Profile currentUser={currentUser} />} />} />
             <Route path="/login" element={<Login authenticated={authenticated} setAuthenticated={setAuthenticated} />} />
             <Route path="/signup" element={<Signup authenticated={authenticated} />} />
-            <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
+            <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler setAuthenticated={setAuthenticated} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
