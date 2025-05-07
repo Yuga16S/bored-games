@@ -1,0 +1,152 @@
+.tictactoe-game-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    background: url('/doodleBG.png') no-repeat center center;
+    background-size: cover;
+}
+
+.tictactoe-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: calc(100vh - 60px - 50px);
+}
+  
+
+.tictactoe-heading {
+    margin-bottom: 80px;
+    font-size: 65px;
+    text-align: center;
+    color:rgb(255, 123, 0);
+    font-family: 'Creepster', cursive;
+    text-shadow: 0 0 10px rgb(94, 15, 158), 0 0 20px rgb(162, 0, 255), 0 0 30px rgba(151, 61, 236, 0.979);
+}
+
+.tictactoe-game-over {
+    text-align: center;
+    border: #000000 8px;
+    border-style: solid;
+    padding: 10px;
+    margin-top: 100px;
+    font-size: 1.8em;
+    font-weight: bold;
+    font-family: Arial;
+    width: 150px;
+    height: 65px;
+    background-color: rgb(255, 235, 205);
+    box-shadow: 0 0 15px #7f00c9, 0 0 25px #530074;
+    color:blue;
+}
+
+
+.tictactoe-reset-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: hsl(198, 100%, 33%); 
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+}
+
+
+.right-border {
+  border-right: 0.2em solid #0074a6;
+}
+
+.bottom-border {
+  border-bottom: 0.2em solid #0074a6;
+}
+
+.x-hover:hover::after {
+  content: "X";
+  opacity: 0.4;
+}
+
+.o-hover:hover::after {
+  content: "O";
+  opacity: 0.4;
+}
+
+.strike {
+  position: absolute;
+  background-color: darkorange;
+}
+
+.strike-row-1 {
+  width: 100%;
+  height: 4px;
+  top: 15%;
+  
+}
+.strike-row-2 {
+  width: 100%;
+  height: 4px;
+  top: 48%;
+}
+.strike-row-3 {
+  width: 100%;
+  height: 4px;
+  top: 83%;
+}
+.strike-column-1 {
+  height: 100%;
+  width: 4px;
+  left: 15%;
+}
+.strike-column-2 {
+  height: 100%;
+  width: 4px;
+  left: 49%;
+}
+.strike-column-3 {
+  height: 100%;
+  width: 4px;
+  left: 83%;
+}
+.strike-diagonal-1 {
+  width: 80%;
+  height: 4px;
+  top: 51%;
+  left: 10%;
+  transform: skewY(46deg);
+}
+.strike-diagonal-2 {
+  width: 80%;
+  height: 4px;
+  top: 49%;
+  left: 10%;
+  transform: skewY(-46deg);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 180px 180px 180px;
+  grid-template-rows: 150px 150px 150px;
+  cursor: pointer;
+  position: relative;
+}
+
+
+  /*.TTT-Title h1{
+    text-align: center;
+    color:rgb(255, 255, 255);
+    margin-left: -50px;
+    margin-bottom: 100px;
+  }*/

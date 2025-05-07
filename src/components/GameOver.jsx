@@ -11,9 +11,9 @@ function GameOver({gameState, scores, player1, player2}) {
             } else {
                 winner = player2;
             }
-            return <div className="game-over">{winner} wins! 🏆 </div>
+            return <div className="dnb-game-over">{winner} wins! 🏆 </div>
         case GameState.DRAW:
-            return <div className="game-over">Draw 😐</div>
+            return <div className="dnb-game-over">Draw 😐</div>
         default:
             return <></>                
     }

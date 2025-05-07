@@ -7,6 +7,9 @@ import gameOverSoundAsset from '../sounds/slot-machine-win.wav';
 import clickSoundAsset from '../sounds/click.wav';
 import drawSoundAsset from '../sounds/draw.wav';
 import Header from './Header.jsx';
+import Confetti from 'react-confetti';
+import Footer from './Footer.jsx';
+import '../TicTacToe.css';
 
 const gameOverSound = new Audio(gameOverSoundAsset);
 gameOverSound.volume = 0.2;
@@ -17,6 +20,21 @@ drawSound.volume = 0.5;
 
 const PLAYER_X = "X";
 const PLAYER_O = "O";
+
+function useWindowSize() {
+    const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setSize([window.innerWidth, window.innerHeight]);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return size;
+}
 
 const winningCombinations = [
     //rows
@@ -56,11 +74,13 @@ function checkWinner(tiles, setStrikeClass, setGameState) {
     }
 }
 
-function TicTacToe() {
+function TicTacToe({ authenticated , onLogout }) {
     const [tiles, setTiles] = useState(Array(9).fill(null));
     const [playerTurn, setPlayerTurn] = useState(PLAYER_X);
     const [strikeClass, setStrikeClass] = useState();
     const [gameState, setGameState] = useState(GameState.inProgress);
+    const [showConfetti, setShowConfetti] = useState(false);
+    const [width, height] = useWindowSize();
 
     useEffect(() => {
         checkWinner(tiles, setStrikeClass, setGameState);
@@ -75,6 +95,9 @@ function TicTacToe() {
     useEffect(() => {
         if((gameState !== GameState.inProgress) && (gameState !== GameState.draw)) {
             gameOverSound.play();
+            setShowConfetti(true);
+            const timer = setTimeout(() => setShowConfetti(false), 5000);
+            return () => clearTimeout(timer);
         }
     }, [gameState]);
 
@@ -109,14 +132,18 @@ function TicTacToe() {
     }
 
     return (
-    <div className="game-container">
-        <Header />
-        <h1 style={{ marginBottom: "50px", paddingTop: "0", paddingBottom: "50px" }}>Tic Tac Toe</h1>
-        <Board playerTurn={playerTurn} tiles={tiles} onTileClick = {handleTileclick} strikeClass={strikeClass}/>
-        <GameOver gameState={gameState}/>
-        <Reset onReset={handleReset} gameState={gameState}/>
+    <div className="tictactoe-game-container">
+        {showConfetti && <Confetti width={width} height={height} numberOfPieces={1000} recycle={false} gravity={0.8} colors={['#ff0', '#f0f', '#0ff', '#0f0', '#f90']} />}
+        <Header authenticated={authenticated} onLogout={onLogout} />
+        <main className="tictactoe-main">
+            <h1 className="tictactoe-heading">Tic Tac Toe</h1>
+            <Board playerTurn={playerTurn} tiles={tiles} onTileClick = {handleTileclick} strikeClass={strikeClass}/>
+            <GameOver gameState={gameState}/>
+            <Reset onReset={handleReset} gameState={gameState}/>
+        </main>
+        <Footer />
     </div>
-    )
+    );
 }
 
 export default TicTacToe;

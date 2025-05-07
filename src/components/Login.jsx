@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Login.css';
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, ACCESS_TOKEN } from '../constants/index.js';
-import { login } from '../util/APIUtils.js';
+import { getCurrentUser, login } from '../util/APIUtils.js';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import fbLogo from '../assets/fb-logo.png';
 import googleLogo from '../assets/google-logo.png';
@@ -29,7 +29,16 @@ const Login = ({ authenticated, setAuthenticated }) => {
   }, [authenticated, navigate, location]);
 
   return (
+    <>
     <div className="login-container">
+    <div className="welcome-message"> 
+        <p>
+          Welcome to <strong>Bored Games</strong>!{" "}<br></br>
+            <span className="cta">
+              Please <Link to="/login">Login</Link> or <Link to="/signup">Signup</Link> to play!
+            </span>
+        </p>
+    </div>
       <div className="login-content">
         <h2 className="login-title">Login to Bored Games</h2>
         <SocialLogin />
@@ -42,6 +51,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 

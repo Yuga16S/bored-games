@@ -1,0 +1,123 @@
+.news-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(133, 41, 209, 0.425);
+  background-image: radial-gradient(circle, rgba(0, 238, 255, 0.555), rgba(140, 0, 255, 0.705));
+  padding-top: 120px;
+}
+
+.news-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-scrolling-text {
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgb(0, 0, 0);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding-bottom: 50px;
+  white-space: nowrap;
+}
+
+.news-scrolling-text p {
+  display: inline-block;
+  animation: scroll-left 18s linear infinite;
+  font-size: 30px;
+  font-family: 'Creepster', cursive;
+  color: black;
+  padding: 1px 20px;
+  white-space: nowrap;
+  text-shadow:
+    0 0 2px yellow,
+    0 0 5px yellow,
+    0 0 15px yellow;
+}
+
+.news-content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 20px;
+  box-sizing: border-box;
+  padding-bottom: 0;
+}
+
+.news-card {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 40px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgb(0, 0, 0);
+  transition: transform 0.3s ease;
+  flex: 1
+}
+
+.news-card:last-child {
+  margin-bottom: 50px; /* Add margin-bottom to the last card */
+}
+
+.news-card:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px 5px rgb(249, 253, 0);
+}
+
+.news-text-container {
+  background-color: rgba(0, 247, 255, 0.479);
+  padding: 10px 20px;
+  border-radius: 12px;
+  max-width: 70%;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-game-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+  font-family: 'Arial Black', sans-serif;
+  color: #000;
+}
+
+.news-game-description {
+  font-size: 18px;
+  margin-top: 8px;
+  color: rgb(0, 0, 0);
+  font-family: sans-serif;
+}
+
+.mp-mode {
+  background-image: url('/mp.jpg');
+}
+
+.cwp-mode {
+  background-image: url('/cwp1.jpg');
+}
+
+.snl-mode {
+  background-image: url('/snl1.jpg');
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

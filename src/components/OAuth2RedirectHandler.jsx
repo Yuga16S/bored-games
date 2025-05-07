@@ -4,7 +4,6 @@ import { ACCESS_TOKEN } from '../constants/index.js';
 
 const OAuth2RedirectHandler = ({  setAuthenticated  }) => {
     const location = useLocation();
-
     const getUrlParameter = (name) => {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');

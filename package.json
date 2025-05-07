@@ -15,7 +15,9 @@
     "owl.carousel": "^2.3.4",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.3.0",
     "react-toastify": "^11.0.5"
   },

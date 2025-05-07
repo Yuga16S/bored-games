@@ -17,6 +17,11 @@ const Signup = (props) => {
 
   return (
     <div className="signup-container">
+      <div className="swelcome-message"> 
+        <p>
+          Welcome to <strong>Bored Games</strong>!
+        </p>
+    </div>
       <div className="signup-content">
         <h2 className="signup-title">Signup with Bored Games</h2>
         <SocialSignup />

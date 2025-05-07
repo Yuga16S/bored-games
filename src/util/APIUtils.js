@@ -6,7 +6,7 @@ const request = async (options) => {
   });
 
   const token = localStorage.getItem(ACCESS_TOKEN);
-  console.log("Inside APIUtils request", token);
+  console.log("4 - Inside APIUtils request", token);
   if (token) {
     headers.append('Authorization', 'Bearer ' + token);
   }
@@ -18,16 +18,16 @@ const request = async (options) => {
 
   try {
     const response = await fetch(config.url, config);
-    console.log("Inside APIUtils try response", response);
+    console.log("5 - Inside APIUtils try response", response);
     const data = await response.json();
-    console.log("Inside APIUtils try data", data);
+    console.log("6 - Inside APIUtils try data", data);
 
     if (!response.ok) {
       throw new Error(data.message || 'Something went wrong');
     }
     return data;
   } catch (error) {
-    console.error("Error in APIUtils:", error);
+    console.error("7 - Error in APIUtils:", error);
     return Promise.reject(error);
   }
 };
@@ -58,5 +58,23 @@ export const signup = (signupRequest) => {
     url: `${API_BASE_URL}/auth/signup`,
     method: 'POST',
     body: JSON.stringify(signupRequest),
+  });
+};
+
+export const addFeedback = (feedbackRequest) => {
+  //console.log("Inside APIUtils feedback request ", feedbackRequest);
+  return request({
+    url: `${API_BASE_URL}/auth/review`,
+    method: 'POST',
+    body: JSON.stringify(feedbackRequest)
+  });
+};
+
+
+export const fetchValidatedReviews = () => {
+  console.log("3 - Inside APIUTil fetchValidatedReviews");
+  return request({
+    url: `${API_BASE_URL}/auth/fetchReviews`,
+    method: 'POST',
   });
 };

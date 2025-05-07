@@ -1,0 +1,38 @@
+.homepage-header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; 
+    background-color: rgb(16, 4, 24);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 1000; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  
+  .site-logo img {
+    height: 50px; 
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    cursor: pointer;
+    font-weight: 500;
+    margin: 0 15px;
+    font-weight: bold;
+  }
+  
+  nav li:hover {
+    color: #1da1f2; 
+  }

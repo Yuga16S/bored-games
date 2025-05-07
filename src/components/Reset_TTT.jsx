@@ -5,7 +5,7 @@ function Reset({gameState, onReset}) {
     if (gameState === GameState.inProgress) {
         return null;
     }
-    return (<button onClick={onReset} className="reset-button-ttt">Play again</button>) ;
+    return (<button onClick={onReset} className="tictactoe-reset-button">Play again</button>) ;
 }
 
 export default Reset;

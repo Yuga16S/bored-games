@@ -7,6 +7,9 @@ import clickSoundAsset from '../sounds/click.wav';
 import drawSoundAsset from '../sounds/draw.wav';
 import GameOver from './GameOver.jsx';
 import Header from './Header.jsx';
+import Confetti from 'react-confetti';
+import '../DotsAndBoxes.css';
+import Footer from './Footer.jsx';
 
 const gameOverSound = new Audio(gameOverSoundAsset);
 gameOverSound.volume = 0.2;
@@ -15,7 +18,22 @@ clickSound.volume = 0.5;
 const drawSound = new Audio(drawSoundAsset);
 drawSound.volume = 0.5;
 
-function DotsAndBoxes() {
+function useWindowSize() {
+    const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setSize([window.innerWidth, window.innerHeight]);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return size;
+}
+
+function DotsAndBoxes({ authenticated , onLogout }) {
     const [player1, setPlayer1] = useState('');
     const [player2, setPlayer2] = useState('');
     const [gameState, setGameState] = useState(GameState.NOT_STARTED);
@@ -27,7 +45,8 @@ function DotsAndBoxes() {
     const [hoveredLine, setHoveredLine] = useState(null);
     const [p1Streak, setP1Streak] = useState(0);
     const [p2Streak, setP2Streak] = useState(0);
-
+    const [showConfetti, setShowConfetti] = useState(false);
+    const [width, height] = useWindowSize();
 
     useEffect(() => {
         if(drawLines.some((line) => line !== null)) {
@@ -38,6 +57,9 @@ function DotsAndBoxes() {
     useEffect(() => {
         if(gameState === GameState.WIN) {
             gameOverSound.play();
+            setShowConfetti(true);
+            const timer = setTimeout(() => setShowConfetti(false), 5000);
+            return () => clearTimeout(timer);
         }
     },[gameState]);
 
@@ -80,12 +102,14 @@ function DotsAndBoxes() {
     };
 
     return ( 
-        <div className="game-container">
-        <Header />    
-        <h1 style={{ marginBottom: "50px", paddingTop: "0", paddingBottom: "50px" }}>Dots and boxes</h1>
+        <div className="dnb-game-container">
+        {showConfetti && <Confetti width={width} height={height} numberOfPieces={1000} recycle={false} gravity={0.8} colors={['#ff0', '#f0f', '#0ff', '#0f0', '#f90']} />}
+        <Header authenticated={authenticated} onLogout={onLogout} />   
+        <main className="dnb-main">
+        <h1 className="dnb-heading">Dots and boxes</h1>
         {gameState === GameState.NOT_STARTED ? (
             <>
-            <div className="player-inputs">
+            <div className="dnb-player-inputs">
                 <div>
                     <label style={{ color: '#05aeb4' }}>Player 1: </label>
                     <input type="text" value={player1} onChange={(e) => {handlePlayer1Change(e)} } placeholder="Enter initials" maxLength={2} />
@@ -110,7 +134,7 @@ function DotsAndBoxes() {
                 completedBoxes={completedBoxes}
                 setCompletedBoxes={setCompletedBoxes}
                 scores={scores}
-                setScores={setScores}
+                setScores={setScores} 
                 turns={turns}
                 setTurns={setTurns} 
                 hoveredLine={hoveredLine} 
@@ -122,30 +146,32 @@ function DotsAndBoxes() {
                 setP2Streak={setP2Streak}
                 />
         {gameState === GameState.IN_PROGRESS && (
-            <div className="current-turn">
+            <div className="dnb-current-turn">
                 <h2>Player ( {currentPlayer} ) turn</h2>
             </div>
         )}
 
         {gameState !== GameState.NOT_STARTED && (
-            <div className='score-board'>
+            <div className='dnb-score-board'>
                 <h3>Score ({player1})  :  {scores[player1]}</h3>
                 <h3>Score ({player2})  :  {scores[player2]}</h3>
             </div>
         )}
 
         {gameState !== GameState.IN_PROGRESS && (
-            <div className='result-container'>
-                <div className='game-over-container'>
+            <div className='dnb-result-container'>
+                <div className='dnb-game-over-container'>
                     <GameOver gameState={gameState} scores={scores} player1={player1} player2={player2} />
                 </div>
-                <div className='reset-container'>
+                <div className='dnb-reset-container'>
                     <Reset onReset={resetGame}/>
                 </div>
             </div>
         )}
         </>
         )}
+        </main>
+        <Footer />
     </div> );
 }
 
